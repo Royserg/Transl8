@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transl8 - Portable translator</title>
+
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- find font and change the header -->
+      <header>
+          <h1 class="header--main">Transl8</h1>
+      </header>
+
+      <main class="translator--container">
+        <section class="translator--section">
+          <label for="translatorInput">Translate</label>
+          <input type="text" class="translator--input" id="translatorInput" placeholder="Text...">
+          <button class="translator--button">translate</button>
+        </section>
+
+        <section class="translator--section">
+          <div class="result">
+            Translated word here
+          </div>
+          <a href="https://translate.yandex.com/">Powered by Yandex.Translate</a>
+        </section>
+      </main>
+
+      <footer>
+        footer
+      </footer>
+
+    </div>
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>
