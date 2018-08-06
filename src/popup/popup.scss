@@ -28,19 +28,22 @@ header {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+
+  .translator--input {
+    height: 25px;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .translator--button {
+    margin-top: 5px;
+    width: 100px;
+    align-self: flex-end;
+  }
+
 }
 
-.translator--section .translator--input {
-  height: 25px;
-  border: none;
-  background-color: white;
-  border-radius: 5px;
-}
 
-.translator--button {
-  margin-top: 5px;
-  width: 100px;
-  align-self: flex-end;
-}
 
-/* TODO: gulp + sass */
+
