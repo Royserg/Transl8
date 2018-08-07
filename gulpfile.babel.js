@@ -26,10 +26,14 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-  gulp.src('./src/**/*.js')
+  gulp.src([
+    './src/popup/languages.js',
+    './src/popup/popup.js'
+  ])
     .pipe(babel({ presets: 'env' }))
+    .pipe(concat('popup.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist/popup'));
 });
 
 gulp.task('clean', () => {
