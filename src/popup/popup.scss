@@ -4,6 +4,13 @@ $bgcolor: rgb(243, 241, 241);
 * {
   margin: 0;
   padding: 0;
+
+  &:focus {
+    outline-color: $darkbrown;
+    outline-width: 1px;
+    outline-style: solid;
+    outline-offset: 1px;
+  }
 }
 
 .wrapper {
