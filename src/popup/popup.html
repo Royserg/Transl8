@@ -12,26 +12,37 @@
     <div class="wrapper">
       <!-- find font and change the header -->
       <header>
-          <h1 class="header--main">Transl8</h1>
+          <img class="header--icon" alt="Extension Icon" src="../assets/icon48.png">
       </header>
 
       <main class="translator--container">
         <section class="translator--section">
-          <label for="translatorInput">Translate</label>
+          <label for="translatorInput">
+            <!-- dropdown btn changing languages -->
+            <button class="language--button" id="inputLang">English</button>
+          </label>
           <input type="text" class="translator--input" id="translatorInput" placeholder="Text...">
-          <button class="translator--button">translate</button>
+          <button class="translator--button" id="translatorBtn">transl8</button>
         </section>
 
+        <button class="translator--reverseBtn">
+          <img src="../assets/reverse_icon.png" alt="reverse languages icon">
+        </button>
+
         <section class="translator--section">
-          <div class="result">
-            >>Word<<
+          <button class="language--button" id="outputLang">Polish</button>
+          <div class="translator--result">
+            Result...
           </div>
-          <a href="https://translate.yandex.com/">Powered by Yandex.Translate</a>
+          <div class="translator--container_buttons">
+            <button class="translator--button" id="saveBtn">Save</button>
+            <button class="translator--button" id="copyBtn">Copy</button>
+          </div>
         </section>
       </main>
 
-      <footer>
-        footer
+      <footer class="footer">
+        <a href="https://translate.yandex.com/" class="footer--API">Powered by Yandex.Translate</a>
       </footer>
 
     </div>

@@ -1,8 +1,29 @@
 /* === Handlers === */
-const translateBtn = document.querySelector('.translator--button');
+const translateBtn = document.querySelector('#translatorBtn');
 const translatorInput = document.querySelector('#translatorInput');
+const languageReverseBtn = document.querySelector('.translator--reverseBtn');
 
+/* === Attach Even Listeners  === */
 translateBtn.addEventListener('click', translateText, false);
+languageReverseBtn.addEventListener('click', reverseLanguages, false);
+
+// TODO: Selecting input & output languages: showing dropdown with lang list
+
+
+/* === When Popup is opened === */
+// focus on input
+translatorInput.focus();
+// TODO: extract from memory last used languages: input & output
+// TODO: extract from memory saved words
+
+
+
+
+
+
+/*  ====================
+    ===== Functions ====
+    ====================   */
 
 function translateText(e) {
   if (translatorInput.value !== '') {
@@ -16,8 +37,19 @@ function translateText(e) {
         return response.json();
       })
       .then(function(myJson) {
-        document.querySelector('.result').innerHTML = myJson.text[0];
+        document.querySelector('.translator--result').innerHTML = myJson.text[0];
       })
 
   }
+}
+
+function reverseLanguages() {
+  console.log('Reverse Btn clicked');
+  // For now it just changes innerHTML of buttons
+  let inputLang = document.querySelector('#inputLang');
+  let outputLang = document.querySelector('#outputLang');
+  let temp = inputLang.innerHTML;
+
+  inputLang.innerHTML = outputLang.innerHTML;
+  outputLang.innerHTML = temp;
 }
