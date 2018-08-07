@@ -16,8 +16,7 @@ translatorInput.focus();
 // TODO: extract from memory last used languages: input & output
 // TODO: extract from memory saved words
 
-
-
+console.log("List of languages", langList);
 
 
 
@@ -53,3 +52,7 @@ function reverseLanguages() {
   inputLang.innerHTML = outputLang.innerHTML;
   outputLang.innerHTML = temp;
 }
+
+
+
+

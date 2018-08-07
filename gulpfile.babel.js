@@ -4,6 +4,7 @@ import sass from 'gulp-sass';
 import clean from 'gulp-clean-css';
 import babel from 'gulp-babel';
 import uglify from 'gulp-uglify';
+import concat from 'gulp-concat';
 
 
 gulp.task('static', () => {
