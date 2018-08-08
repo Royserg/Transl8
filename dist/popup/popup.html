@@ -19,7 +19,12 @@
         <section class="translator--section">
           <label for="translatorInput">
             <!-- dropdown btn changing languages -->
-            <button class="language--button" id="inputLang">English</button>
+            <button
+              class="language--button"
+              id="inputLang"
+              data-lang-info="from">
+                English
+            </button>
           </label>
           <input type="text" class="translator--input" id="translatorInput" placeholder="Text...">
           <button class="translator--button" id="translatorBtn">Transl8</button>
@@ -30,7 +35,12 @@
         </button>
 
         <section class="translator--section">
-          <button class="language--button" id="outputLang">Polish</button>
+          <button
+            class="language--button"
+            id="outputLang"
+            data-lang-info="to">
+             Polish
+          </button>
           <div class="translator--result">
             Result...
           </div>
@@ -40,6 +50,16 @@
           </div>
         </section>
       </main>
+
+      <div id="modal" class="modal--overlay">
+        <div class="modal--container">
+          <h2>Translate <span id="translateInfo"></span>:</h2>
+          <a href="#" class="modal--close">&times;</a>
+          <div class="modal--content">
+
+          </div>
+        </div>
+      </div>
 
       <footer class="footer">
         <a href="https://translate.yandex.com/" class="footer--API">Powered by Yandex.Translate</a>

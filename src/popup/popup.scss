@@ -16,8 +16,8 @@ $bgcolor: rgb(243, 241, 241);
 .wrapper {
   background-color: $bgcolor;
   color: $darkbrown;
-  min-width: 400px;
-  min-height: 400px;
+  min-width: 450px;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -50,6 +50,7 @@ header {
     }
 
     .translator--input, .translator--result {
+      outline: none;
       height: 30px;
       width: 95%;
       color: black;
@@ -101,17 +102,25 @@ header {
     background-color: transparent;
     align-self: flex-start;
     cursor: pointer;
+    transition: 0.3 all ease;
+
+    &:hover, &:focus {
+      opacity: .8;
+    }
   }
 
   .language--button {
     width: 62px;
     height: 25px;
     color: black;
+    text-decoration: none;
+    text-align: center;
     border: 1px solid $darkbrown;
     border-radius: 2px;
     background-color: transparent;
     margin-bottom: 5px;
     transition: all .3s ease;
+    position: relative;
 
     &:hover, &:focus {
       cursor: pointer;
@@ -122,10 +131,76 @@ header {
 }
 
 
-/* =======================
-   ==== Footer Styles ====
-   =======================
-*/
+/* =========================
+   ==== Languages Modal ====
+   ========================= */
+
+.modal--overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .4);
+  transition: opacity .5s;
+  visibility: hidden;
+  opacity: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal--container {
+    width: 85%;
+    height: 75%;
+    margin-top: 30px;
+    position: relative;
+    padding: 15px;
+    background: $bgcolor;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+
+    h2 {
+      text-align: center;
+    }
+
+    .modal--close {
+      position: absolute;
+      top: -10px;
+      right: 5px;
+      transition: all .2s;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: $darkbrown;
+
+      &:hover, &:focus {
+        color: #000;
+      }
+    }
+
+    .modal--content {
+      height: 95%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+  }
+
+
+}
+
+.modal--overlay-opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* ========================
+   ==== Footer Styles =====
+   ======================== */
+
 
 .footer {
   .footer--API {
