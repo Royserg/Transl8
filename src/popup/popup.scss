@@ -38,8 +38,8 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 320px;
-    height: 100px;
+    width: 350px;
+    height: 130px;
     border: 1px solid $darkbrown;
     border-radius: 5px;
     box-shadow: 0px 2px 2px rgba(0,0,0,.24);
@@ -51,7 +51,7 @@ header {
 
     .translator--input, .translator--result {
       outline: none;
-      height: 30px;
+      height: 50px;
       width: 95%;
       color: black;
       font-size: 1rem;
@@ -110,17 +110,20 @@ header {
   }
 
   .language--button {
-    width: 62px;
+    padding: 5px;
     height: 25px;
     color: black;
-    text-decoration: none;
-    text-align: center;
     border: 1px solid $darkbrown;
     border-radius: 2px;
     background-color: transparent;
     margin-bottom: 5px;
     transition: all .3s ease;
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
 
     &:hover, &:focus {
       cursor: pointer;
@@ -151,17 +154,20 @@ header {
   align-items: center;
 
   .modal--container {
-    width: 85%;
-    height: 75%;
-    margin-top: 30px;
+    width: 90%;
+    height: 80%;
+    margin-top: 40px;
     position: relative;
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
     background: $bgcolor;
     border-radius: 5px;
     transition: all .5s ease-in-out;
 
     h2 {
       text-align: center;
+      margin-bottom: 7px;
     }
 
     .modal--close {
@@ -180,16 +186,33 @@ header {
     }
 
     .modal--content {
-      height: 95%;
+      height: 96%;
       width: 100%;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+
+      .modal--language {
+        border: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+
+        &:hover, &:focus {
+          cursor: pointer;
+          border: 1px solid $darkbrown;
+        }
+      }
+
+      .modal--language-selected {
+        background-color: $darkbrown;
+        color: $bgcolor;
+      }
+
     }
   }
-
-
 }
+
+
 
 .modal--overlay-opened {
   visibility: visible;
