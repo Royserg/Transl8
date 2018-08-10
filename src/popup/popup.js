@@ -15,6 +15,8 @@ const modalContainer = document.querySelector('.modal--container');
 /* ========================= */
 
 translateBtn.addEventListener('click', translateText, false);
+translatorInput.addEventListener('keyup', sendToTranslate, false);
+
 languageReverseBtn.addEventListener('click', reverseLanguages, false);
 
 /* === Event Listeners for Modal  === */
@@ -41,15 +43,16 @@ translatorInput.focus();
 /* ===== Functions ==== */
 /* ==================== */
 
-function translateText(e) {
+function translateText() {
   if (translatorInput.value !== '') {
-    console.log(translatorInput.value)
+    // URL encode input text
+    let toTranslate = translatorInput.value.split(' ').join('+');
 
     let inputLangCode = langList[inputLangBtn.innerHTML];
     let outputLangCode = langList[outputLangBtn.innerHTML];
 
     // API request
-    const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180806T180405Z.a97df2323f4db674.6f2961e102f1e464ad056fafcaf6951b74a2fb26&text=${translatorInput.value}&lang=${inputLangCode}-${outputLangCode}`;
+    const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180806T180405Z.a97df2323f4db674.6f2961e102f1e464ad056fafcaf6951b74a2fb26&text=${toTranslate}&lang=${inputLangCode}-${outputLangCode}`;
 
     fetch(url)
       .then(function (response) {
@@ -58,8 +61,11 @@ function translateText(e) {
       .then(function (myJson) {
         document.querySelector('.translator--result').innerHTML = myJson.text[0];
       })
-
   }
+}
+
+function sendToTranslate(e) {
+  if (e.key === 'Enter') translateText();
 }
 
 function reverseLanguages() {
