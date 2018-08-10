@@ -8,6 +8,7 @@ const languageReverseBtn = document.querySelector('.translator--reverseBtn');
 const outputLangBtn = document.querySelector('#outputLang');
 const inputLangBtn = document.querySelector('#inputLang');
 const modalContent = document.querySelector('.modal--content');
+const modalContainer = document.querySelector('.modal--container');
 
 /* ========================= */
 /* ==== Event Listeners ==== */
@@ -21,7 +22,7 @@ outputLangBtn.addEventListener('click', showModal, false);
 inputLangBtn.addEventListener('click', showModal, false);
 document.querySelector('.modal--overlay').addEventListener('click', closeModal, false);
 modalContent.addEventListener('click', selectLanguage, false);
-modalContent.addEventListener('keypress', searchLanguage, false);
+modalContainer.addEventListener('keypress', searchLanguage, false);
 
 
 
@@ -31,10 +32,9 @@ modalContent.addEventListener('keypress', searchLanguage, false);
 
 // focus on input
 translatorInput.focus();
+
 // TODO: extract from memory last used languages: input & output
 // TODO: extract from memory saved words
-
-
 
 
 /* ==================== */
@@ -92,8 +92,11 @@ function showModal(e) {
   // show modal
   document.querySelector('#modal').classList.add('modal--overlay-opened');
 
-  // TODO: focus on first language button
-  modalContent.focus();
+  // focus on languages container
+  setTimeout(() => {
+    modalContainer.focus();
+  }, 100);
+
 }
 
 function closeModal(e) {
@@ -119,5 +122,31 @@ function selectLanguage(e) {
 }
 
 function searchLanguage(e) {
-  console.log(e);
+  let languages = document.querySelectorAll('.modal--language');
+
+  // get languages starting with typed char
+  let matches = Array.from(languages).filter(lang => {
+    return lang.innerHTML[0].toLowerCase() === e.key;
+  })
+
+  // one of matching languages is focused on, focus on next one
+  for (let i = 0, length = matches.length; i < length; i++) {
+    if (document.activeElement === matches[i]) {
+      if ((i + 1) === length) {
+        matches[0].focus();
+      } else {
+        matches[i+1].focus();
+      }
+      break;
+    }
+  }
+
+  // if no lang was focused, target first lang
+  let langFocused = matches.filter(lang => {
+    return document.activeElement === lang;
+  });
+
+  if (langFocused.length === 0) {
+    matches[0].focus();
+  }
 }
