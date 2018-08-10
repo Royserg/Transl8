@@ -16,7 +16,6 @@ const modalContainer = document.querySelector('.modal--container');
 
 translateBtn.addEventListener('click', translateText, false);
 translatorInput.addEventListener('keyup', sendToTranslate, false);
-
 languageReverseBtn.addEventListener('click', reverseLanguages, false);
 
 /* === Event Listeners for Modal  === */
@@ -117,10 +116,20 @@ function selectLanguage(e) {
 
   if (clickedLanguage.classList[0] === 'modal--language') {
 
-    document.querySelector('#translateInfo').innerHTML === 'from' ?
-      (inputLangBtn.innerHTML = clickedLanguage.innerHTML)
-    :
-      (outputLangBtn.innerHTML = clickedLanguage.innerHTML)
+    if (document.querySelector('#translateInfo').innerHTML === 'from') {
+      // Same language is on output Btn -> swap with previously set lang
+      if (outputLangBtn.innerHTML === clickedLanguage.innerHTML) {
+        outputLangBtn.innerHTML = inputLangBtn.innerHTML;
+      }
+      inputLangBtn.innerHTML = clickedLanguage.innerHTML;
+
+    } else {
+      // Same language is on input Btn -> swap with previously set lang
+      if (inputLangBtn.innerHTML === clickedLanguage.innerHTML) {
+        inputLangBtn.innerHTML = outputLangBtn.innerHTML;
+      }
+      outputLangBtn.innerHTML = clickedLanguage.innerHTML
+    }
 
     // close modal
     document.querySelector('#modal').classList.remove('modal--overlay-opened');
