@@ -33,8 +33,17 @@ modalContainer.addEventListener('keypress', searchLanguage, false);
 
 // focus on input
 translatorInput.focus();
+// extract from memory last used languages: input & output
+chrome.storage.sync.get(['inputLanguage', 'outputLanguage'], function(data) {
+  if (data.inputLanguage) {
+    inputLangBtn.innerHTML = data.inputLanguage;
+  }
 
-// TODO: extract from memory last used languages: input & output
+  if (data.outputLanguage) {
+    outputLangBtn.innerHTML = data.outputLanguage;
+  }
+})
+
 // TODO: extract from memory saved words
 
 
@@ -73,6 +82,12 @@ function reverseLanguages() {
   let outputLang = document.querySelector('#outputLang');
 
   [inputLang.innerHTML, outputLang.innerHTML] = [outputLang.innerHTML, inputLang.innerHTML];
+
+  // update languages in storage
+  chrome.storage.sync.set({
+    "inputLanguage": inputLang.innerHTML,
+    "outputLanguage": outputLang.innerHTML
+  });
 
 }
 
@@ -122,13 +137,16 @@ function selectLanguage(e) {
         outputLangBtn.innerHTML = inputLangBtn.innerHTML;
       }
       inputLangBtn.innerHTML = clickedLanguage.innerHTML;
-
+      // save language into storage
+      chrome.storage.sync.set({"inputLanguage": clickedLanguage.innerHTML});
     } else {
       // Same language is on input Btn -> swap with previously set lang
       if (inputLangBtn.innerHTML === clickedLanguage.innerHTML) {
         inputLangBtn.innerHTML = outputLangBtn.innerHTML;
       }
       outputLangBtn.innerHTML = clickedLanguage.innerHTML
+      // save language into storage
+      chrome.storage.sync.set({"outputLanguage": clickedLanguage.innerHTML});
     }
 
     // close modal

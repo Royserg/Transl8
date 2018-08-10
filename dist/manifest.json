@@ -12,5 +12,8 @@
     "default_title": "Transl8",
     "default_icon": "assets/icon16.png",
     "default_popup": "popup/popup.html"
-  }
+  },
+  "permissions" : [
+    "storage"
+  ]
 }
