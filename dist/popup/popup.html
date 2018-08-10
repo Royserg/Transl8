@@ -38,11 +38,10 @@
             id="outputLang"
             data-lang-info="to">Polish</button>
           <div class="translator--result">
-            Result...
           </div>
           <div class="translator--container_buttons">
+            <button class="translator--button" id="copyBtn" data-clipboard-target=".translator--result">Copy</button>
             <button class="translator--button" id="saveBtn">Save</button>
-            <button class="translator--button" id="copyBtn">Copy</button>
           </div>
         </section>
       </main>
@@ -63,7 +62,8 @@
 
     </div>
 
-
+    <!-- Clipboard.js: https://clipboardjs.com/ -->
+    <script src="clipboard.min.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
