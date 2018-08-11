@@ -25,17 +25,6 @@ document.querySelector('.modal--overlay').addEventListener('click', closeModal, 
 modalContent.addEventListener('click', selectLanguage, false);
 modalContainer.addEventListener('keypress', searchLanguage, false);
 
-// initialize clipboardJS button
-const copyBtn = new ClipboardJS('#copyBtn');
-
-copyBtn.on('success', function(e) {
-  console.info('Action:', e.action);
-  console.info('Text:', e.text);
-  console.info('Trigger:', e.trigger);
-
-  e.clearSelection();
-});
-
 /* ============================== */
 /* ==== When Popup is opened ==== */
 /* ============================== */
@@ -52,6 +41,33 @@ chrome.storage.sync.get(['inputLanguage', 'outputLanguage'], function(data) {
     outputLangBtn.innerHTML = data.outputLanguage;
   }
 })
+
+
+// initialize clipboardJS button
+const copyBtn = new ClipboardJS('#copyBtn');
+
+copyBtn.on('success', function(e) {
+  console.info('Action:', e.action);
+  console.info('Text:', e.text);
+  console.info('Trigger:', e.trigger);
+
+  // show tooltip
+  e.trigger.classList.add('tooltip');
+
+  // e.trigger.addEventListener('mouseleave', () => {
+  //   e.trigger.classList.remove('tooltip');
+  // }, false);
+
+  // e.trigger.addEventListener('blur', () => {
+  //   e.trigger.classList.remove('tooltip');
+  // }, false);
+
+  ['blur', 'mouseleave'].forEach(function(eventName) {
+    e.trigger.addEventListener(eventName, () => removeClass(e.trigger, 'tooltip'), false);
+  });
+
+  e.clearSelection();
+});
 
 // TODO: extract from memory saved words
 
@@ -191,4 +207,8 @@ function searchLanguage(e) {
   if (langFocused.length === 0) {
     matches[0].focus();
   }
+}
+
+function removeClass(element, className) {
+  element.classList.remove(className);
 }
