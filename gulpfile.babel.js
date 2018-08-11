@@ -16,6 +16,9 @@ gulp.task('static', () => {
 
   gulp.src('./src/manifest.json')
     .pipe(gulp.dest('./dist'));
+
+  gulp.src('./src/popup/clipboard.min.js')
+    .pipe(gulp.dest('./dist/popup'));
 });
 
 gulp.task('sass', () => {
@@ -34,6 +37,11 @@ gulp.task('js', () => {
     .pipe(concat('popup.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist/popup'));
+
+  gulp.src('./src/content/content.js')
+    .pipe(babel({ presets: 'env' }))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/content'));
 });
 
 gulp.task('clean', () => {
