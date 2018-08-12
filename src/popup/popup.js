@@ -54,14 +54,7 @@ copyBtn.on('success', function(e) {
   // show tooltip
   e.trigger.classList.add('tooltip');
 
-  // e.trigger.addEventListener('mouseleave', () => {
-  //   e.trigger.classList.remove('tooltip');
-  // }, false);
-
-  // e.trigger.addEventListener('blur', () => {
-  //   e.trigger.classList.remove('tooltip');
-  // }, false);
-
+  // multi event listener attaching to button
   ['blur', 'mouseleave'].forEach(function(eventName) {
     e.trigger.addEventListener(eventName, () => removeClass(e.trigger, 'tooltip'), false);
   });
@@ -79,7 +72,7 @@ copyBtn.on('success', function(e) {
 function translateText() {
   if (translatorInput.value !== '') {
     // URL encode input text
-    let toTranslate = translatorInput.value.split(' ').join('+');
+    let toTranslate = translatorInput.value.replace(/\s/g, '+');
 
     let inputLangCode = langList[inputLangBtn.innerHTML];
     let outputLangCode = langList[outputLangBtn.innerHTML];
