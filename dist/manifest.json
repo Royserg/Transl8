@@ -13,6 +13,10 @@
     "default_icon": "assets/icon16.png",
     "default_popup": "popup/popup.html"
   },
+  "background": {
+    "scripts": ["event/event.js"],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -21,6 +25,6 @@
   ],
   "permissions" : [
     "storage",
-    "activeTab"
+    "contextMenus"
   ]
 }

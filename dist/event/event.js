@@ -1,0 +1,1 @@
+"use strict";var menuItem={id:"transl8",title:"Transl8",contexts:["selection"]};chrome.contextMenus.create(menuItem),chrome.contextMenus.onClicked.addListener(function(e){"transl8"===e.menuItemId&&e.selectionText&&console.log(e.selectionText)});
