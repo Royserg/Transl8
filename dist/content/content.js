@@ -1,1 +1,1 @@
-"use strict";console.log("Hello content file");
+"use strict";function gotMessage(e,t,n){if(e.txt){var i=e.txt,o=(new RegExp(i,"g"),window.getSelection().getRangeAt(0).getBoundingClientRect()),s=document.createElement("div");s.classList.add("transl8--tooltip"),s.style.left=o.x+"px",s.style.top=o.y+window.scrollY-o.height+"px",s.innerHTML=e.translation,document.body.appendChild(s)}}chrome.runtime.onMessage.addListener(gotMessage);

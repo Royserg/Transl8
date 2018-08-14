@@ -1,5 +1,42 @@
-$green: #229922;
+$darkbrown: #747474;
+$bgcolor: rgb(243, 241, 241);
 
-body {
-  background: $green;
+.transl8--tooltip {
+  position: absolute;
+  z-index: 999;
+  background-color: $bgcolor;
+  color: $darkbrown ;
+  border: 1px solid $darkbrown;
+  border-radius: 3px;
+  transition: all 1s ease;
+
+  // &:hover {
+  //   background-color: $darkbrown;
+  //   color: white;
+  // }
+
+  // &::before {
+  //   // visibility: hidden;
+  //   content: attr(data-translation);
+  //   width: 150px;
+  //   height: 150px;
+  //   padding-left: 3px;
+  //   padding-right: 3px;
+  //   position: absolute;
+  //   background-color: $bgcolor;
+  //   color: $darkbrown;
+  //   border: 1px solid $darkbrown;
+  //   border-radius: 4px;
+  //   top: -100px;
+  //   left: 0;
+  //   z-index: 900;
+
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
+  // &:hover::before {
+  //   // visibility: visible;
+  // }
 }
