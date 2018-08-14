@@ -43,8 +43,12 @@ gulp.task('js', () => {
     .pipe(uglify())
     .pipe(gulp.dest('./dist/content'));
 
-  gulp.src('./src/event/event.js')
+  gulp.src([
+    './src/event/languages.js',
+    './src/event/event.js'
+  ])
     .pipe(babel({ presets: 'env' }))
+    .pipe(concat('event.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist/event'));
 });
