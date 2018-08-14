@@ -3,40 +3,26 @@ $bgcolor: rgb(243, 241, 241);
 
 .transl8--tooltip {
   position: absolute;
+  min-width: 50px;
+  min-height: 40px;
   z-index: 999;
   background-color: $bgcolor;
+  padding-left: 4px;
   color: $darkbrown ;
   border: 1px solid $darkbrown;
   border-radius: 3px;
   transition: all 1s ease;
 
-  // &:hover {
-  //   background-color: $darkbrown;
-  //   color: white;
-  // }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  // &::before {
-  //   // visibility: hidden;
-  //   content: attr(data-translation);
-  //   width: 150px;
-  //   height: 150px;
-  //   padding-left: 3px;
-  //   padding-right: 3px;
-  //   position: absolute;
-  //   background-color: $bgcolor;
-  //   color: $darkbrown;
-  //   border: 1px solid $darkbrown;
-  //   border-radius: 4px;
-  //   top: -100px;
-  //   left: 0;
-  //   z-index: 900;
+  .transl8--button {
+    color: $darkbrown;
+    font-weight: bold;
+    align-self: flex-start;
+    border: none;
+    background: none;
+  }
 
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
-
-  // &:hover::before {
-  //   // visibility: visible;
-  // }
 }

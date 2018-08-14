@@ -10,8 +10,13 @@ function gotMessage(data, sender, sendResponse) {
     const tooltip = document.createElement('div'); // make tooltip box
     tooltip.classList.add('transl8--tooltip');
     tooltip.style.left = rect.x + 'px';
-    tooltip.style.top = (rect.y + window.scrollY - rect.height ) + 'px'; // above selected - distance from top of the page
+    tooltip.style.top = (rect.y + window.scrollY + rect.height ) + 'px'; // above selected - distance from top of the page
     tooltip.innerHTML = data.translation;  // place translation into box
+
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('transl8--button');
+    closeBtn.innerHTML = '&times;';
+    tooltip.appendChild(closeBtn); // append button to tooltip
 
     // append to body
     document.body.appendChild(tooltip);

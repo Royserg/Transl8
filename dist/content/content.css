@@ -1,1 +1,1 @@
-.transl8--tooltip{position:absolute;z-index:999;background-color:#f3f1f1;color:#747474;border:1px solid #747474;border-radius:3px;transition:all 1s ease}
+.transl8--tooltip{position:absolute;min-width:50px;min-height:40px;z-index:999;background-color:#f3f1f1;padding-left:4px;color:#747474;border:1px solid #747474;border-radius:3px;transition:all 1s ease;display:flex;justify-content:space-between;align-items:center}.transl8--tooltip .transl8--button{color:#747474;font-weight:700;align-self:flex-start;border:none;background:0 0}
