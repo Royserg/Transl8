@@ -10,7 +10,7 @@ $bgcolor: rgb(243, 241, 241);
   padding-left: 4px;
   color: $darkbrown ;
   border: 1px solid $darkbrown;
-  border-radius: 3px;
+  border-radius: 0 4px 4px 4px;
   transition: all 1s ease;
 
   display: flex;
@@ -23,6 +23,8 @@ $bgcolor: rgb(243, 241, 241);
     align-self: flex-start;
     border: none;
     background: none;
+    margin-left: 10px;
+    margin-top: -5px;
   }
 
 }
