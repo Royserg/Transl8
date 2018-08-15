@@ -16,9 +16,16 @@ function gotMessage(data, sender, sendResponse) {
     const closeBtn = document.createElement('button');
     closeBtn.classList.add('transl8--button');
     closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', closeTooltip, false);
+
     tooltip.appendChild(closeBtn); // append button to tooltip
 
     // append to body
     document.body.appendChild(tooltip);
   }
+}
+
+function closeTooltip(e) {
+  // remove tooltip attached to body
+  document.body.removeChild(e.target.parentElement);
 }
