@@ -219,6 +219,39 @@ header {
   opacity: 1;
 }
 
+/* ===========================
+   ==== Side Page Styles =====
+   =========================== */
+
+  .side--container {
+    position: absolute;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    border-left: 1px solid $darkbrown;
+    background-color: $bgcolor;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 1s ease;
+
+
+    .side--heading {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+
+      button {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+
+
+  }
+
 
 /* ========================
    ==== Footer Styles =====
