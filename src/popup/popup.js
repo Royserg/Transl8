@@ -25,6 +25,19 @@ document.querySelector('.modal--overlay').addEventListener('click', closeModal, 
 modalContent.addEventListener('click', selectLanguage, false);
 modalContainer.addEventListener('keypress', searchLanguage, false);
 
+/* === Side Page Listeners === */
+document.querySelector('#hideSide').addEventListener('click', hideSidePage, false);
+document.querySelector('#showSide').addEventListener('click', showSidePage, false);
+
+function hideSidePage() {
+  document.querySelector('.side--container').style.right = '-100%';
+}
+
+function showSidePage() {
+  document.querySelector('.side--container').style.right = '0';
+}
+
+
 /* ============================== */
 /* ==== When Popup is opened ==== */
 /* ============================== */

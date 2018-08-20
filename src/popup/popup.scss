@@ -225,7 +225,7 @@ header {
 
   .side--container {
     position: absolute;
-    right: 0;
+    right: -100%;
     width: 60%;
     height: 100%;
     border-left: 1px solid $darkbrown;
@@ -242,14 +242,45 @@ header {
       justify-content: center;
       margin: 10px 0;
 
-      button {
+      .side--button {
+        width: 30px;
+        height: 30px;
         position: absolute;
-        left: 0;
+        left: 5px;
+        background: url(../assets/back_icon.png) center no-repeat;
+
+        &:hover, &:focus {
+          opacity: .8;
+          box-shadow: 0 2px 2px rgba(0,0,0, .24);
+        }
       }
     }
 
 
 
+  }
+
+  .side--button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .side--button-open {
+    width: 56px;
+    height: 24px;
+    color: $bgcolor;
+    background-color: $darkbrown;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px rgba(0,0,0, .24);
+    position: absolute;
+    right: -15px;
+    top: 20px;
+    transform: rotateZ(-90deg);
+
+    &:hover, &:focus {
+      box-shadow: -2px 0px 2px rgba(0,0,0, .40);
+    }
   }
 
 
