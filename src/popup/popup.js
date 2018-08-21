@@ -102,6 +102,9 @@ function translateText() {
     // API request
     const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180806T180405Z.a97df2323f4db674.6f2961e102f1e464ad056fafcaf6951b74a2fb26&text=${toTranslate}&lang=${inputLangCode}-${outputLangCode}`;
 
+    // inform user about translating
+    translatorResult.innerHTML = "Loading...";
+
     fetch(url)
       .then(function (response) {
         return response.json();
