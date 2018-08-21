@@ -4,11 +4,17 @@
 
 const translateBtn = document.querySelector('#translatorBtn');
 const translatorInput = document.querySelector('#translatorInput');
+const translatorResult = document.querySelector('.translator--result');
 const languageReverseBtn = document.querySelector('.translator--reverseBtn');
 const outputLangBtn = document.querySelector('#outputLang');
 const inputLangBtn = document.querySelector('#inputLang');
 const modalContent = document.querySelector('.modal--content');
 const modalContainer = document.querySelector('.modal--container');
+const saveBtn = document.querySelector('#saveBtn');
+const copyBtn = document.querySelector('#copyBtn');
+const hideSidePageBtn = document.querySelector('#hideSide');
+const showSidePageBtn = document.querySelector('#showSide');
+const savedWordsList = document.querySelector('.side--words');
 
 /* ========================= */
 /* ==== Event Listeners ==== */
@@ -17,6 +23,7 @@ const modalContainer = document.querySelector('.modal--container');
 translateBtn.addEventListener('click', translateText, false);
 translatorInput.addEventListener('keyup', sendToTranslate, false);
 languageReverseBtn.addEventListener('click', reverseLanguages, false);
+saveBtn.addEventListener('click', saveTranslation, false);
 
 /* === Event Listeners for Modal  === */
 outputLangBtn.addEventListener('click', showModal, false);
@@ -25,17 +32,16 @@ document.querySelector('.modal--overlay').addEventListener('click', closeModal, 
 modalContent.addEventListener('click', selectLanguage, false);
 modalContainer.addEventListener('keypress', searchLanguage, false);
 
+/* === Save and Copy button Listener === */
+['blur', 'mouseleave'].forEach(function(eventName) {
+  saveBtn.addEventListener(eventName, () => removeClass(saveBtn, 'tooltip'), false);
+  copyBtn.addEventListener(eventName, () => removeClass(copyBtn, 'tooltip'), false);
+});
+
 /* === Side Page Listeners === */
-document.querySelector('#hideSide').addEventListener('click', hideSidePage, false);
-document.querySelector('#showSide').addEventListener('click', showSidePage, false);
+hideSidePageBtn.addEventListener('click', hideSidePage, false);
+showSidePageBtn.addEventListener('click', showSidePage, false);
 
-function hideSidePage() {
-  document.querySelector('.side--container').style.right = '-100%';
-}
-
-function showSidePage() {
-  document.querySelector('.side--container').style.right = '0';
-}
 
 
 /* ============================== */
@@ -45,7 +51,7 @@ function showSidePage() {
 // focus on input
 translatorInput.focus();
 // extract from memory last used languages: input & output
-chrome.storage.sync.get(['inputLanguage', 'outputLanguage'], function(data) {
+chrome.storage.sync.get(['words', 'inputLanguage', 'outputLanguage'], function(data) {
   if (data.inputLanguage) {
     inputLangBtn.innerHTML = data.inputLanguage;
   }
@@ -53,29 +59,32 @@ chrome.storage.sync.get(['inputLanguage', 'outputLanguage'], function(data) {
   if (data.outputLanguage) {
     outputLangBtn.innerHTML = data.outputLanguage;
   }
+
+  // initialize array for holding saved words
+  if (!data.words) {
+    chrome.storage.sync.set({'words': {}});
+  } else {
+    // place words into side page ul
+    for (let key in data.words) {
+      let li = `<li>${key} - ${data.words[key]}</li>`;
+      savedWordsList.innerHTML += li;
+    }
+  }
+
 })
 
 
 // initialize clipboardJS button
-const copyBtn = new ClipboardJS('#copyBtn');
+const copyToClipboardBtn = new ClipboardJS('#copyBtn');
 
-copyBtn.on('success', function(e) {
-  console.info('Action:', e.action);
-  console.info('Text:', e.text);
-  console.info('Trigger:', e.trigger);
-
+copyToClipboardBtn.on('success', function(e) {
   // show tooltip
-  e.trigger.classList.add('tooltip');
-
-  // multi event listener attaching to button
-  ['blur', 'mouseleave'].forEach(function(eventName) {
-    e.trigger.addEventListener(eventName, () => removeClass(e.trigger, 'tooltip'), false);
-  });
+  if (translatorResult.innerHTML) {
+    e.trigger.classList.add('tooltip');
+  }
 
   e.clearSelection();
 });
-
-// TODO: extract from memory saved words
 
 
 /* ==================== */
@@ -98,7 +107,7 @@ function translateText() {
         return response.json();
       })
       .then(function (myJson) {
-        document.querySelector('.translator--result').innerHTML = myJson.text[0];
+        translatorResult.innerHTML = myJson.text[0];
       })
   }
 }
@@ -217,4 +226,36 @@ function searchLanguage(e) {
 
 function removeClass(element, className) {
   element.classList.remove(className);
+}
+
+/* === Save Button Function === */
+function saveTranslation(e) {
+
+  if (translatorResult.innerHTML) {
+    // add tooltip to button
+    e.target.classList.add('tooltip');
+    // retrieve array of saved words
+    chrome.storage.sync.get('words', function(data) {
+      let words = data.words;
+
+      // save word into memory
+      words[translatorInput.value] = translatorResult.innerHTML;
+      chrome.storage.sync.set({'words': words});
+
+      // attach to the end of the list
+      let li = `<li>${translatorInput.value} - ${translatorResult.innerHTML}</li>`;
+      savedWordsList.innerHTML += li;
+    })
+
+  }
+}
+
+
+/* === Side Page Functions === */
+function hideSidePage() {
+  document.querySelector('.side--container').style.right = '-100%';
+}
+
+function showSidePage() {
+  document.querySelector('.side--container').style.right = '0';
 }

@@ -38,15 +38,17 @@
             class="language--button"
             id="outputLang"
             data-lang-info="to">Polish</button>
-          <div class="translator--result">
-          </div>
+          <div class="translator--result"></div>
           <div class="translator--container_buttons">
             <button
               class="translator--button"
               id="copyBtn"
               data-message="Copied!"
               data-clipboard-target=".translator--result">Copy</button>
-            <button class="translator--button" id="saveBtn">Save</button>
+            <button
+              class="translator--button"
+              data-message="Saved!"
+              id="saveBtn">Save</button>
           </div>
         </section>
       </main>
@@ -66,10 +68,7 @@
           <button class="side--button" id="hideSide"></button>
           <h2>Saved Words</h2>
         </div>
-        <ul>
-          <li>car - Samochód</li>
-          <li>tissue - chusteczka</li>
-        </ul>
+        <ul class="side--words"></ul>
       </section>
 
       <footer class="footer">
