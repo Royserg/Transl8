@@ -247,6 +247,7 @@ header {
         height: 30px;
         position: absolute;
         left: 5px;
+        top: 7px;
         background: url(../assets/back_icon.png) center no-repeat;
 
         &:hover, &:focus {
@@ -256,7 +257,13 @@ header {
       }
     }
 
+    .side--words {
+      list-style: none;
 
+      li {
+        font-size: .9rem;
+      }
+    }
 
   }
 
