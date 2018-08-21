@@ -41,12 +41,12 @@ modalContainer.addEventListener('keypress', searchLanguage, false);
 /* === Side Page Listeners === */
 hideSidePageBtn.addEventListener('click', hideSidePage, false);
 showSidePageBtn.addEventListener('click', showSidePage, false);
+savedWordsList.addEventListener('click', removeWord, false);
 
 
-
-/* ============================== */
-/* ==== When Popup is opened ==== */
-/* ============================== */
+/* ====================================== */
+/* ==== START = When Popup is opened ==== */
+/* ====================================== */
 
 // focus on input
 translatorInput.focus();
@@ -66,8 +66,7 @@ chrome.storage.sync.get(['words', 'inputLanguage', 'outputLanguage'], function(d
   } else {
     // place words into side page ul
     for (let key in data.words) {
-      let li = `<li>${key} - ${data.words[key]}</li>`;
-      savedWordsList.innerHTML += li;
+      addTranslationToList(key, data.words[key]);
     }
   }
 
@@ -246,8 +245,7 @@ function saveTranslation(e) {
       chrome.storage.sync.set({'words': words});
 
       // attach to the end of the list
-      let li = `<li>${translatorInput.value} - ${translatorResult.innerHTML}</li>`;
-      savedWordsList.innerHTML += li;
+      addTranslationToList(translatorInput.value, translatorResult.innerHTML);
     })
 
   }
@@ -261,4 +259,28 @@ function hideSidePage() {
 
 function showSidePage() {
   document.querySelector('.side--container').style.right = '0';
+}
+
+function removeWord(e) {
+  // only catch `x` buttons
+  if (e.target.tagName === "BUTTON") {
+    // extract data-key from button
+    let key = e.target.dataset.key;
+    // remove from memory
+    chrome.storage.sync.get('words', function(data) {
+      let words = data.words;
+      delete words[key];
+      chrome.storage.sync.set({'words': words}, function(){});
+    })
+
+    // remove from list
+    let li = e.target.parentNode;
+    li.parentNode.removeChild(li);
+  }
+
+}
+
+function addTranslationToList(word, translation) {
+  let li = `<li><button data-key="${word}" class="side--button">&times;</button>${word} - ${translation}</li>`;
+  savedWordsList.innerHTML += li;
 }

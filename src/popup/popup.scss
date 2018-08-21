@@ -259,9 +259,22 @@ header {
 
     .side--words {
       list-style: none;
+      width: 80%;
 
       li {
+        position: relative;
         font-size: .9rem;
+        padding-left: 10px;
+
+        button {
+          visibility: hidden;
+          margin-right: 10px;
+          font-size: 1rem;
+        }
+
+        &:hover button, button:hover {
+          visibility: visible;
+        }
       }
     }
 
