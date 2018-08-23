@@ -2,9 +2,6 @@ chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(data, sender, sendResponse) {
   if (data.txt) {
-    let selected = data.txt;
-
-    const re = new RegExp(selected, 'g');
     const rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
 
     const tooltip = document.createElement('div'); // make tooltip box
