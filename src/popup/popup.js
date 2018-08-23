@@ -43,49 +43,6 @@ hideSidePageBtn.addEventListener('click', hideSidePage, false);
 showSidePageBtn.addEventListener('click', showSidePage, false);
 savedWordsList.addEventListener('click', removeWord, false);
 
-
-/* ====================================== */
-/* ==== START = When Popup is opened ==== */
-/* ====================================== */
-
-// focus on input
-translatorInput.focus();
-// extract from memory last used languages: input & output
-chrome.storage.sync.get(['words', 'inputLanguage', 'outputLanguage'], function(data) {
-  if (data.inputLanguage) {
-    inputLangBtn.innerHTML = data.inputLanguage;
-  }
-
-  if (data.outputLanguage) {
-    outputLangBtn.innerHTML = data.outputLanguage;
-  }
-
-  // initialize array for holding saved words
-  if (!data.words) {
-    chrome.storage.sync.set({'words': {}});
-  } else {
-    // place words into side page ul
-    for (let key in data.words) {
-      addTranslationToList(key, data.words[key]);
-    }
-  }
-
-})
-
-
-// initialize clipboardJS button
-const copyToClipboardBtn = new ClipboardJS('#copyBtn');
-
-copyToClipboardBtn.on('success', function(e) {
-  // show tooltip
-  if (translatorResult.innerHTML) {
-    e.trigger.classList.add('tooltip');
-  }
-
-  e.clearSelection();
-});
-
-
 /* ==================== */
 /* ===== Functions ==== */
 /* ==================== */
@@ -284,3 +241,45 @@ function addTranslationToList(word, translation) {
   let li = `<li><button data-key="${word}" class="side--button">&times;</button>${word} - ${translation}</li>`;
   savedWordsList.innerHTML += li;
 }
+
+/* ====================================== */
+/* ==== START = When Popup is opened ==== */
+/* ====================================== */
+
+// focus on input
+translatorInput.focus();
+// extract from memory last used languages: input & output
+chrome.storage.sync.get(['words', 'inputLanguage', 'outputLanguage'], function(data) {
+  if (data.inputLanguage) {
+    inputLangBtn.innerHTML = data.inputLanguage;
+  }
+
+  if (data.outputLanguage) {
+    outputLangBtn.innerHTML = data.outputLanguage;
+  }
+
+  // initialize array for holding saved words
+  if (!data.words) {
+    chrome.storage.sync.set({'words': {}});
+  } else {
+    // place words into side page ul
+    for (let key in data.words) {
+      addTranslationToList(key, data.words[key]);
+    }
+  }
+
+})
+
+
+// initialize clipboardJS button
+const copyToClipboardBtn = new ClipboardJS('#copyBtn');
+
+copyToClipboardBtn.on('success', function(e) {
+  // show tooltip
+  if (translatorResult.innerHTML) {
+    e.trigger.classList.add('tooltip');
+  }
+
+  e.clearSelection();
+});
+
