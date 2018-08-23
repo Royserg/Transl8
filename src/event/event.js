@@ -14,7 +14,8 @@ function translateSelected(info, tab) {
     // retrieve output lang from storage
     chrome.storage.sync.get(['outputLanguage'], function(data) {
       // get output language code
-      const outputLang =  langList[data.outputLanguage];
+      const outputLang = data.outputLanguage ? langList[data.outputLanguage] : 'en';
+
       // prepare selection for API request
       const toTranslate = info.selectionText.replace(/\s/g, '+');
 
