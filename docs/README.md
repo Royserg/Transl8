@@ -2,7 +2,7 @@
 
 Chrome extension used for translating selected text on web pages.
 
-[Link to Extension in Chrome Webstore]("https://chrome.google.com/webstore/detail/transl8/mnebglacodfobomdkcmagajkhalkodjb?hl=pl")
+[Link to Extension in Chrome Webstore](https://chrome.google.com/webstore/detail/transl8/mnebglacodfobomdkcmagajkhalkodjb?hl=pl)
 
 
 ## Technologies used:
@@ -10,7 +10,7 @@ Chrome extension used for translating selected text on web pages.
 - Vanilla JavaScript
 - Sass 
 - Gulp
-- external API - [Yandex Translate]("https://tech.yandex.com/translate/")
+- external API - [Yandex Translate](https://tech.yandex.com/translate/)
 
 
 ## Overview:
